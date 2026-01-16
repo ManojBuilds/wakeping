@@ -119,7 +119,7 @@ export default function Dashboard() {
                   Configure a health check for your remote instance.
                 </ResponsiveDialogDescription>
               </ResponsiveDialogHeader>
-              <form onSubmit={handleAddSite} className="space-y-8 pt-6">
+              <form onSubmit={handleAddSite} className="space-y-8 p-6">
                 <div className="space-y-6">
                   <div className="space-y-2.5">
                     <Label htmlFor="name" className="font-mono text-[11px] font-bold text-zinc-500 uppercase tracking-wider">Service Name</Label>

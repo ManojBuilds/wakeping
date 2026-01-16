@@ -22,6 +22,11 @@ export const createSite = mutation({
       status: "pending",
     });
 
+    await ctx.scheduler.runAfter(0, internal.sites.pingSite, {
+      id: siteId,
+      url: args.url,
+    });
+
     return siteId;
   },
 });

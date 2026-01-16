@@ -1,9 +1,7 @@
-import { Crons } from "@convex-dev/crons";
-import { v } from "convex/values";
-import { components, internal } from "./_generated/api";
-import { internalAction, internalMutation, internalQuery, mutation, query } from "./_generated/server";
 
-const crons = new Crons(components.crons);
+import { v } from "convex/values";
+import { internal } from "./_generated/api";
+import { internalAction, internalMutation, internalQuery, mutation, query } from "./_generated/server";
 
 // Public Queries & Mutations
 export const createSite = mutation({
@@ -118,18 +116,3 @@ export const pingAll = internalAction({
   },
 });
 
-export const registerPingCron = internalMutation({
-  handler: async (ctx) => {
-    const existing = await crons.get(ctx, { name: "ping-all-sites" });
-    if (existing === null) {
-      await crons.register(
-        ctx,
-        { kind: "interval", ms: 10 * 60 * 1000 }, // 10 minutes
-        internal.sites.pingAll,
-        {},
-        "ping-all-sites"
-      );
-      console.log("Registered global ping cron");
-    }
-  },
-});
